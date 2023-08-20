@@ -12,7 +12,7 @@ pipeline {
         stage('OWASP Dependency Checker') {
             steps {
                 echo 'Testing..'
-                dependencyCheck addiotionalArguments: '', odcInstallation: 'Default'
+                dependencyCheck additionalArguments: '', odcInstallation: 'Default'
             }
         }
 
