@@ -2,21 +2,29 @@ pipeline {
     agent any
     
     stages {
-        stage('Build') {
+        stage('Git Pull') {
             steps {
-                echo 'Building...'
-                echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE}"
+                echo 'Pulling repository...'
+                git "https://github.com/lorenz075/WebGoatPipelineTeste"
             }
         }
         
-        stage('Test') {
+        stage('OWASP Dependency Checker') {
             steps {
                 echo 'Testing..'
+                dependencyCheck addiotionalArguments: '', odcInstallation: 'Default'
             }
         }
-        stage('Deploy') {
+
+        stage('OWASP Report') {
             steps {
-                echo 'Deploying....'
+                echo 'Generating report..'
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Done'
             }
         }
     }
