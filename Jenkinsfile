@@ -25,7 +25,7 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            staps{
+            steps{
                 withSonarQubeEnv('sonarqube') {
                   sh 'mvn sonar:sonar -Dsonar.projectKey=WebGoatPipelineTeste -Dsonar.host.url=http://127.0.0.1:9000'
 
