@@ -32,8 +32,7 @@ pipeline {
                 withSonarQubeEnv('SonarQubeLocal') {
                   bat "${tool("SonarQubeScanner")}/bin/sonar-scanner  \
                     -Dsonar.projectKey=WebGoatPipelineTeste \
-                    -Dsonar.projectName='WebGoatPipelineTeste' \
-                    -Dsonar.sources=.        
+                    -Dsonar.projectName='WebGoatPipelineTeste'     
             }
         }
       }
